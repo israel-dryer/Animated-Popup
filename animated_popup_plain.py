@@ -10,14 +10,13 @@ def test_connection(seconds):
     sleep(seconds)
     STATUS = True
 
+
 def animated_popup():
     """ create animated popup window """
-    
     msg = 'doing stuff.'
     ellipsis = '.'
     e_count = 0
-    layout = [
-        [sg.Text(msg, size=(16, 1), font=(sg.DEFAULT_FONT, 14), key='LOAD')]]
+    layout = [[sg.Text(msg, size=(16, 1), font=(sg.DEFAULT_FONT, 14), key='LOAD')]]
     window = sg.Window(
         'Loading...', layout=layout, element_justification='center', 
         size=(200, 60), margins=(15, 15), grab_anywhere=True, 
@@ -34,11 +33,11 @@ def animated_popup():
     sg.popup_ok('Ready to go') 
 
 
-def popup():
+def main():
     """ main program execution """
     t1 = Thread(target=test_connection, args=(10, ))
     t1.start()
     animated_popup()
  
-popup()
+main()
   
