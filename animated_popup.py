@@ -32,12 +32,14 @@ def animated_popup():
             img = image_iter()
             window['LOAD'].update(filename=next(img))
     window.close()
+    sg.popup_ok('Ready to go') 
+
 
 def main():
     """ main program execution """
     t1 = Thread(target=test_connection, args=(10, ))
     t1.start()
     animated_popup()
-    sg.popup_ok('Ready to go')    
+   
 
 main()
