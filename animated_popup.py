@@ -1,19 +1,26 @@
+"""
+    Animated Progress Bar that can run independent of another process
+    Author      :   Israel Dryer
+    Modified    :   2019-11-18
+"""
 from threading import Thread
 from time import sleep
 import PySimpleGUI as sg 
 
+# ----- DUMMMY PROCESS -------------------------------------------------------
 STATUS = False
-IMAGES = ['spin1.png', 'spin2.png', 'spin3.png', 'spin4.png', 'spin5.png', 'spin6.png', 'spin7.png', 'spin8.png']
-
-def test_connection(seconds):
+def your_process(seconds):
     """ simulated network connection test """
     global STATUS
     sleep(seconds)
     STATUS = True
 
+# ----- POP UP GUI -----------------------------------------------------------
 def animated_popup():
     """ create animated popup window """
-    
+    IMAGES = ['spin1.png', 'spin2.png', 'spin3.png', 'spin4.png', 
+              'spin5.png', 'spin6.png', 'spin7.png', 'spin8.png']
+
     def image_iter() -> iter:
         """ create generator for animated popup images """
         return ('Images/' + image for image in IMAGES)
@@ -25,21 +32,22 @@ def animated_popup():
                         keep_on_top=True, grab_anywhere=True, no_titlebar=True)
 
     while not STATUS:
-        window.read(timeout=150)
+        window.read(timeout=80)
         try:
             window['LOAD'].update(filename=next(img))
         except StopIteration:
             img = image_iter()
             window['LOAD'].update(filename=next(img))
     window.close()
-    sg.popup_ok('Ready to go') 
+    sg.popup_ok('Complete!') 
 
-
+# ----- MAIN ROUTINE ---------------------------------------------------------
 def main():
     """ main program execution """
-    t1 = Thread(target=test_connection, args=(10, ))
+    sg.popup_ok('Test Connection')
+    t1 = Thread(target=your_process, args=(8, ))
     t1.start()
     animated_popup()
    
-
-main()
+if __name__=='__main__':
+    main()

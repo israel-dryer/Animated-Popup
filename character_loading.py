@@ -1,10 +1,16 @@
+"""
+    Simple Character Process/Loading Screen
+    Author      :   Israel Dryer
+    Modified    :   2019-11-18
+"""
 from threading import Thread
 from time import sleep
 import PySimpleGUI as sg 
+sg.change_look_and_feel('Dark2')
 
 STATUS = False
 
-def test_connection(seconds):
+def your_process(seconds):
     """ simulated network connection test """
     global STATUS
     sleep(seconds)
@@ -30,14 +36,17 @@ def animated_popup():
         else:
             e_count += 1
     window.close()
-    sg.popup_ok('Ready to go') 
+    sg.popup_ok('Complete!', font=(sg.DEFAULT_FONT, 11)) 
 
 
 def main():
     """ main program execution """
-    t1 = Thread(target=test_connection, args=(10, ))
+    sg.popup_ok('Begin Test', font=(sg.DEFAULT_FONT, 11))
+    t1 = Thread(target=your_process, args=(8, ))
     t1.start()
     animated_popup()
  
-main()
+
+if __name__ =="__main__":
+    main()
   
