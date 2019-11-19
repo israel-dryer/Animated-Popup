@@ -1,4 +1,4 @@
 # Animated Popup
 Animated PySimpleGUI popup screen for running processes
 
-![](example.gif)
+![video](examples/animated_popup.mp4)
