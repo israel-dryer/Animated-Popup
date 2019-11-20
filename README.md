@@ -1,7 +1,7 @@
 # Animated Popup
 Animated PySimpleGUI popup screens for running processes. All of these can be run independent of other processes using multi-threading.
 
-This ![splash screen popup]() can be used for loading processes while starting up a program  
+This ![splash screen popup](splash_screen.py) can be used for loading processes while starting up a program  
 
 ![splash screen popup](examples/splashscreen.gif)  
 
