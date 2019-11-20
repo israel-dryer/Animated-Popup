@@ -34,7 +34,7 @@ def loading_popup():
         no_titlebar=True, element_justification='center', finalize=True)
 
     while not loaded:
-        event, values = window.read(timeout=50)
+        window.read(timeout=50)
         window['LOADING'].update(value=get_bar_size())
 
     window['OK'].update(disabled=False)
